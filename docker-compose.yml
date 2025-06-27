@@ -1,0 +1,34 @@
+version: '3.8'
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  redis:
+    image: 'bitnami/redis:latest'
+    environment:
+      ALLOW_EMPTY_PASSWORD: yes
+    ports:
+      - "6379:6379" 
+    networks:
+      - app-tier
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    networks:
+      - app-tier
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+    - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/bankingBD
+      ME_CONFIG_BASICAUTH: false
+    networks:
+      - app-tier
