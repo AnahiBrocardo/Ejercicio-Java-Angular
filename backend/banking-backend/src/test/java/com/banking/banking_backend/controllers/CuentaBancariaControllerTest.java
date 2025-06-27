@@ -114,18 +114,18 @@ public class CuentaBancariaControllerTest {
     void testActualizarSaldo() throws Exception {
         SaldoDTO saldoDTO = new SaldoDTO();
         saldoDTO.setCuentaId("abc123");
-        saldoDTO.setSaldo(5000);
+        saldoDTO.setSaldo(5000.0);
 
         CuentaBancaria cuentaActualizada = CuentaBancaria.builder()
                 .id("abc123")
-                .saldo(5000)
+                .saldo(5000.0)
                 .build();
 
         Mockito.when(cuentaService.actualizarSaldo(Mockito.any(SaldoDTO.class))).thenReturn(cuentaActualizada);
 
-        String jsonSaldoDTO = "{\"idCuenta\":\"abc123\",\"nuevoSaldo\":5000}";
+        String jsonSaldoDTO = "{\"cuentaId\":\"abc123\",\"saldo\":5000}";
 
-        mockMvc.perform(post("/accounts/actualizar-saldo")
+        mockMvc.perform(put("/accounts/actualizar-saldo")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonSaldoDTO))
                 .andExpect(status().isOk())

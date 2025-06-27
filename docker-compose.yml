@@ -5,6 +5,17 @@ networks:
     driver: bridge
 
 services:
+
+  app_banking:
+    build: ./backend/banking-backend
+    ports:
+      - "8080:8080"
+    environment: 
+      SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/bankingBD
+      SPRING_DATA_REDIS_HOST: redis
+    networks:
+      - app-tier
+ 
   redis:
     image: 'bitnami/redis:latest'
     environment:
@@ -28,7 +39,8 @@ services:
     ports:
     - "8081:8081"
     environment:
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/bankingBD
+      ME_CONFIG_MONGODB_URL: mongodb://mongo:27017
+
       ME_CONFIG_BASICAUTH: false
     networks:
       - app-tier
