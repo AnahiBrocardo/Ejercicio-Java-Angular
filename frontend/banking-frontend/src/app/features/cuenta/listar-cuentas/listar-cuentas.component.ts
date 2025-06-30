@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CuentaBancaria } from 'src/app/modelos/cuentaBancaria.model';
+import { CuentaBancaria } from 'src/app/interfaces/cuentaBancaria.model';
 import { CuentaService } from 'src/app/servicios/cuenta/cuenta.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DetalleCuentaComponent } from '../modales/detalle-cuenta/detalle-cuenta.component';
@@ -52,6 +52,7 @@ export class ListarCuentasComponent implements OnInit {
 }
 
 eliminarCuenta(cuenta: CuentaBancaria) {
+  console.log(cuenta);
  Swal.fire({
     title: '¿Estás seguro?',
     text: `Vas a eliminar la cuenta de ${cuenta.nombre} ${cuenta.apellido}`,

@@ -29,7 +29,7 @@
         <td mat-cell *matCellDef="let cuenta">
           <button mat-stroked-button (click)="verDetalle(cuenta)">Detalle</button>
           <button mat-stroked-button  (click)="editarCuenta(cuenta)">Actualizar saldo</button>
-          <button mat-stroked-button (click)="eliminarCuenta(cuenta.id)">Eliminar</button>
+          <button mat-stroked-button (click)="eliminarCuenta(cuenta)">Eliminar</button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="columnas"></tr>

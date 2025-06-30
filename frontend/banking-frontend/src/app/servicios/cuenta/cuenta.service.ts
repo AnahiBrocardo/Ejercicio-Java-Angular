@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CuentaBancaria } from 'src/app/modelos/cuentaBancaria.model';
+import { CuentaBancaria } from 'src/app/interfaces/cuentaBancaria.model';
+import { SaldoDTO } from 'src/app/interfaces/saldoDTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,8 @@ export class CuentaService {
     return this.http.post<CuentaBancaria>(this.apiUrl, cuenta);
   }
 
-  actualizarSaldo(id: string, nuevoSaldo: string): Observable<any> {
-    return this.http.patch(`${this.apiUrl}/${id}`, { saldo: nuevoSaldo });
+  actualizarSaldo(dto: SaldoDTO): Observable<any> {
+    return this.http.put(`${this.apiUrl}/actualizar-saldo`, dto);
   }
 
   eliminarCuenta(id: string): Observable<any> {

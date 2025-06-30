@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CuentaBancaria } from 'src/app/modelos/cuentaBancaria.model';
+import { CuentaBancaria } from 'src/app/interfaces/cuentaBancaria.model';
 import { CuentaService } from 'src/app/servicios/cuenta/cuenta.service';
 import Swal from 'sweetalert2';
 
@@ -34,9 +34,13 @@ export class EditarCuentaComponent implements OnInit {
       return;
     }
 
-    const nuevoSaldo = this.formSaldo.value.saldo;
-
-    this.cuentaService.actualizarSaldo(this.data.id!, nuevoSaldo).subscribe({
+    
+    const saldoDTO = {
+      cuentaId: this.data.id,
+      saldo: this.formSaldo.value.saldo
+    }
+     
+    this.cuentaService.actualizarSaldo(saldoDTO).subscribe({
       next: () => this.dialogRef.close('actualizado'),
       error: err => {
         if (err.status === 400) {

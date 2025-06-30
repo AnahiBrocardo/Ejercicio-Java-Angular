@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CuentaBancaria } from 'src/app/modelos/cuentaBancaria.model';
+import { CuentaBancaria } from 'src/app/interfaces/cuentaBancaria.model';
 
 @Component({
   selector: 'app-detalle-cuenta',
