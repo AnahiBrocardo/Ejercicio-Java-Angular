@@ -13,7 +13,7 @@
       El saldo es obligatorio.
     </mat-error>
     <mat-error *ngIf="formSaldo.get('saldo')?.hasError('min')">
-      El saldo debe ser mayor a 0.
+      El saldo debe ser positivo.
     </mat-error>
   </mat-form-field>
 

@@ -6,32 +6,73 @@
 
 .tabla-container {
   width: 90%;
-  padding: 1rem;
+  padding: 1.3rem;
+  border-radius: 12px;
+}
+
+.titulo-tabla {
+  color: #1a3d8f;
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.tabla-encabezado {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+button[mat-flat-button] {
+  background-color: #de7c3f;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 8px 16px;
+  transition: background-color 0.25s;
+  border: none;
+  cursor: pointer;
+}
+
+button[mat-flat-button]:hover {
+ background-color: #dc712e;
+  transform: translateY(-3px);
 }
 
 .tabla-mat {
   width: 100%;
-  border-radius: 8px;
+  border-collapse: collapse;
+  border-radius: 10px;
   overflow: hidden;
 }
 
 .mat-header-cell, .mat-cell {
-  padding: 12px 16px;
-  font-size: 15px;
+  padding: 12px 14px;
+  font-size: 14px;
+  text-align: left;
+  border-bottom: 1px solid #ddd; /* línea gris clara entre filas */
+  color: inherit; /* que las celdas no tengan color especial */
 }
 
 .mat-header-cell {
-  background-color: #3e8f84;
-  color: white;
-  font-weight: bold;
-}
-
-.mat-row:nth-child(even) {
-  background-color: #f5f5f5;
+  background-color: transparent; /* sin fondo */
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #1a3d8f; /* texto azul oscuro solo en encabezados */
+  border-bottom: 1px solid #1a3d8f; /* línea más gruesa azul en encabezados */
 }
 
 .mat-row:hover {
-  background-color: #e0e0e0;
+  background-color: #f5faff; /* muy suave azul para hover */
   cursor: pointer;
   transition: background-color 0.3s;
+}
+
+button[mat-icon-button] {
+  color: #264e7e; /* azul oscuro */
+}
+
+button[mat-icon-button]:hover {
+  color: #1e3d66;
 }

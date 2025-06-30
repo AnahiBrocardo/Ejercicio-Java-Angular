@@ -34,26 +34,12 @@ export class EditarCuentaComponent implements OnInit {
       return;
     }
 
-    
     const saldoDTO = {
       cuentaId: this.data.id,
       saldo: this.formSaldo.value.saldo
-    }
-     
-    this.cuentaService.actualizarSaldo(saldoDTO).subscribe({
-      next: () => this.dialogRef.close('actualizado'),
-      error: err => {
-        if (err.status === 400) {
-          const mensaje = err.error?.message;
-          Swal.fire('Error', mensaje, 'error');
-        } else if (err.status === 404) {
-          Swal.fire('Error', 'Cuenta no encontrada', 'error');
-        } else {
-          Swal.fire('Error', 'Error del servidor, inténtalo más tarde', 'error');
-        }
-      }
-      });
-  
+    };
+
+    this.dialogRef.close(saldoDTO);
   }
 
   cancelar() {

@@ -1,1 +1,29 @@
-<p>crear-cuenta works!</p>
+<section>
+    <h2>Crear Cuenta Bancaria</h2>
+
+    <form [formGroup]="formCrearCuenta" (ngSubmit)="guardar()">
+        <p class="info-form">
+            Por favor, complete todos los campos marcados con *
+        </p>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>* Nombre</mat-label>
+            <input matInput formControlName="nombre" placeholder="Ingrese su nombre" />
+            <mat-error *ngIf="formCrearCuenta.get('nombre')?.hasError('required')">
+                El nombre es obligatorio.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>* Apellido</mat-label>
+            <input matInput formControlName="apellido" placeholder="Ingrese su apellido" />
+            <mat-error *ngIf="formCrearCuenta.get('apellido')?.hasError('required')">
+                El apellido es obligatorio.
+            </mat-error>
+        </mat-form-field>
+
+        <div class="acciones">
+            <button mat-flat-button color="primary" type="submit" [disabled]="formCrearCuenta.invalid">Guardar</button>
+            <button mat-button type="button" (click)="cancelar()">Cancelar</button>
+        </div>
+    </form>
+</section>
