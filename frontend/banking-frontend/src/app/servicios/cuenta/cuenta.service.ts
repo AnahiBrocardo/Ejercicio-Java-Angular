@@ -13,7 +13,7 @@ export class CuentaService {
   constructor(private http: HttpClient) { }
 
   getCuentas(): Observable<CuentaBancaria[]>{
-    return this.http.get<CuentaBancaria[]>('${this.apiUrl');
+    return this.http.get<CuentaBancaria[]>(this.apiUrl);
   }
 
   getCuentaPorId(id: string): Observable<CuentaBancaria> {

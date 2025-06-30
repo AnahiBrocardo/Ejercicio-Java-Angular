@@ -1,0 +1,41 @@
+<section class="tabla-cuentas">
+  <mat-card class="tabla-container">
+    <h1>Listado Cuentas</h1>
+
+    <table mat-table [dataSource]="this.cuentas" class="mat-elevation-z8 tabla-mat">
+
+      <ng-container matColumnDef="orden">
+        <th mat-header-cell *matHeaderCellDef> N° </th>
+        <td mat-cell *matCellDef="let cuenta; let i = index"> {{ i + 1 }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let cuenta"> {{ cuenta.nombre }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="apellido">
+        <th mat-header-cell *matHeaderCellDef> Apellido </th>
+        <td mat-cell *matCellDef="let cuenta"> {{ cuenta.apellido }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="numeroCuenta">
+        <th mat-header-cell *matHeaderCellDef> N° Cuenta </th>
+        <td mat-cell *matCellDef="let cuenta"> {{ cuenta.numeroCuenta }} </td>
+      </ng-container>
+      
+       <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let cuenta">
+          <button mat-stroked-button color="primary" (click)="verDetalle(cuenta)">Detalle</button>
+          <button mat-stroked-button color="accent" (click)="editarCuenta(cuenta)">Actualizar</button>
+          <button mat-stroked-button color="warn" (click)="eliminarCuenta(cuenta.id)">Eliminar</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+    </table>
+
+    
+  </mat-card>
+</section>

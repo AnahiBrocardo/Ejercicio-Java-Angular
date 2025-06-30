@@ -1,0 +1,37 @@
+.tabla-cuentas {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.tabla-container {
+  width: 90%;
+  padding: 1rem;
+}
+
+.tabla-mat {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mat-header-cell, .mat-cell {
+  padding: 12px 16px;
+  font-size: 15px;
+}
+
+.mat-header-cell {
+  background-color: #3e8f84;
+  color: white;
+  font-weight: bold;
+}
+
+.mat-row:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.mat-row:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}

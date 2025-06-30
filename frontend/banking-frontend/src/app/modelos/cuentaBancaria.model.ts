@@ -4,4 +4,5 @@ export interface CuentaBancaria {
   apellido:string;
   saldo: number;
   activa: boolean
+  numeroCuenta: string
 }
