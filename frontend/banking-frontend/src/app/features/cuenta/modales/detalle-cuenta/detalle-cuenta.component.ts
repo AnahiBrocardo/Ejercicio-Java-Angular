@@ -13,5 +13,12 @@ export class DetalleCuentaComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
+  irAHistorial(){
 
+  }
+
+  irATransferencia(){
+    
+  }
 }
