@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ListarCuentasComponent } from './features/cuenta/listar-cuentas/listar-cuentas.component';
 
 
 const routes: Routes = [
- { path: 'cuentas', loadChildren: () => import('./features/cuenta/cuenta.module').then(m => m.CuentaModule) }
+  { path: '', component: ListarCuentasComponent },
 ];
 
 @NgModule({

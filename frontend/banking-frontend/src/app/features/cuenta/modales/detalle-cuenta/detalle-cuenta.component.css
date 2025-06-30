@@ -1,0 +1,28 @@
+.detalle-cuenta {
+  color: #333;
+  max-width: 100%;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+.detalle-cuenta h1 {
+  margin-bottom: 1rem;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: #565859;
+}
+
+.detalle-cuenta p {
+  background-color: #f5f5f5;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin: 0.5rem 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-size: 1rem;
+}
+
+.detalle-cuenta p strong {
+  color: #565859;
+  display: inline-block;
+  width: 130px;
+}

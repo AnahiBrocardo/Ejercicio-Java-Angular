@@ -6,13 +6,28 @@ import { ListarCuentasComponent } from './listar-cuentas/listar-cuentas.componen
 import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
 import { TransferenciaComponent } from './transferencia/transferencia.component';
 import { MovimientosComponent } from './movimientos/movimientos.component';
-
+import { DetalleCuentaComponent } from './modales/detalle-cuenta/detalle-cuenta.component';
+import { EditarCuentaComponent } from './modales/editar-cuenta/editar-cuenta.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [ListarCuentasComponent, CrearCuentaComponent, TransferenciaComponent, MovimientosComponent],
+  declarations: [ListarCuentasComponent, CrearCuentaComponent, TransferenciaComponent, MovimientosComponent, DetalleCuentaComponent, EditarCuentaComponent],
   imports: [
     CommonModule,
-    CuentaRoutingModule
+    CuentaRoutingModule,
+    MatCardModule,
+    MatTableModule,
+    MatButtonModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class CuentaModule { }

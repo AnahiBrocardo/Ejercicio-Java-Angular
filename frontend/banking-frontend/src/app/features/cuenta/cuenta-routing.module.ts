@@ -4,13 +4,15 @@ import { ListarCuentasComponent } from './listar-cuentas/listar-cuentas.componen
 import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
 import { TransferenciaComponent } from './transferencia/transferencia.component';
 import { MovimientosComponent } from './movimientos/movimientos.component';
+import { EditarCuentaComponent } from './modales/editar-cuenta/editar-cuenta.component';
 
 
 const routes: Routes = [
    { path: '', component: ListarCuentasComponent },
-  { path: 'nueva', component: CrearCuentaComponent },
-  { path: 'transferir', component: TransferenciaComponent },
-  { path: 'movimientos/:id', component: MovimientosComponent },
+  { path: 'crear', component: CrearCuentaComponent },
+  { path: 'editar/:id', component: EditarCuentaComponent },
+  { path: 'transferencia', component: TransferenciaComponent },
+  { path: 'movimientos/:id', component: MovimientosComponent }
 ];
 
 @NgModule({
