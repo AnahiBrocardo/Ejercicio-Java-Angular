@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { CuentaModule } from './features/cuenta/cuenta.module';
+import { CuentaModule } from './components/cuenta/cuenta.module';
 
 @NgModule({
   declarations: [

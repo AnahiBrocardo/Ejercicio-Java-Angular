@@ -5,7 +5,7 @@ import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
 import { TransferenciaComponent } from './transferencia/transferencia.component';
 import { MovimientosComponent } from './movimientos/movimientos.component';
 import { EditarCuentaComponent } from './modales/editar-cuenta/editar-cuenta.component';
-import { CuentaPageComponent } from 'src/app/features/cuenta/cuenta-page/cuenta-page.component';
+import { CuentaPageComponent } from 'src/app/components/cuenta/cuenta-page/cuenta-page.component';
 
 
 const routes: Routes = [

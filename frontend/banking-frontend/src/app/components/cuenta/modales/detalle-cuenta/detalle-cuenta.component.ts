@@ -19,6 +19,7 @@ export class DetalleCuentaComponent implements OnInit {
     this.cuentaService.getCuentaPorId(this.id).subscribe({
       next: (cuenta) => {
         this.cuenta = cuenta;
+        },
         error: (err) => {
           let mensaje;
           if (err.status === 404) {
@@ -29,8 +30,7 @@ export class DetalleCuentaComponent implements OnInit {
             mensaje = err.error.message;
           }
           Swal.fire('Error', mensaje, 'error');
-        }         
-        }        
+        }            
       });    
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TransferenciaComponent } from '../transferencia/transferencia.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -12,7 +12,7 @@ export class CuentaPageComponent implements OnInit {
   mostrarMovimientos = false;
   idCuenta!: string;
 
-  constructor(private route: ActivatedRoute, private dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.idCuenta = this.route.snapshot.paramMap.get('id')!;
@@ -24,7 +24,19 @@ export class CuentaPageComponent implements OnInit {
         cuentaOrigenId: this.idCuenta
       }
     });
+    dialogRef.afterClosed().subscribe(resultado => {
+      if (resultado === 'transferencia-realizada') {
+        this.recargarCuentaPage();
+      }
+    });
+
   }
+
+  recargarCuentaPage() {
+  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.router.navigate(['/cuenta', this.idCuenta]);
+  });
+}
 
 
 }

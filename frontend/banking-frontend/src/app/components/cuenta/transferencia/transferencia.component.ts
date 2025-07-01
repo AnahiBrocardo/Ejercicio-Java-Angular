@@ -78,6 +78,7 @@ export class TransferenciaComponent implements OnInit {
       Swal.fire('Error', mensaje, 'error');
     }
   });
+  this.dialogRef.close('transferencia-realizada');
   }
 
   cancelar() {

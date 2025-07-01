@@ -7,7 +7,7 @@
                 <mat-panel-title> Ver movimientos </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <app-movimientos></app-movimientos>
+            <app-movimientos [idCuenta]="idCuenta"></app-movimientos>
         </mat-expansion-panel>
     </mat-accordion>
     <button mat-flat-button color="primary" (click)="irATransferencia()">Transferir</button>

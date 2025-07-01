@@ -16,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { CuentaPageComponent } from 'src/app/features/cuenta/cuenta-page/cuenta-page.component';
+import { CuentaPageComponent } from 'src/app/components/cuenta/cuenta-page/cuenta-page.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 

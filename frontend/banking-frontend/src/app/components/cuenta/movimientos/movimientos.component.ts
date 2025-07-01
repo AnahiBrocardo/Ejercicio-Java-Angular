@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovimientoDTO } from 'src/app/interfaces/movimiento.model';
 import { MovimientoService } from 'src/app/servicios/movimiento/movimiento.service';
@@ -10,17 +10,18 @@ import Swal from 'sweetalert2';
   styleUrls: ['./movimientos.component.css']
 })
 export class MovimientosComponent implements OnInit {
-
-  idCuenta!: string;
+  @Input() idCuenta!: string; 
   movimientos: MovimientoDTO[] = [];
   displayedColumns: string[] = ['fecha', 'contraparte', 'monto', 'tipo'];
 
   constructor(private route: ActivatedRoute, private movimientoService: MovimientoService) { }
 
   ngOnInit(): void {
-    this.idCuenta = this.route.parent?.snapshot.paramMap.get('id')!;
     this.movimientoService.getMovimientoPorId(this.idCuenta).subscribe({
-      next: (data) => this.movimientos = data,
+      next: (data) => {
+        this.movimientos = data;
+        console.log(data);
+      },
       error: (err) => {
         let mensaje;
         if (err.status === 500) {
@@ -33,7 +34,7 @@ export class MovimientosComponent implements OnInit {
     });
   }
 
-   obtenerTipo(mov: MovimientoDTO): string {
+  obtenerTipo(mov: MovimientoDTO): string {
     return mov.cuentaOrigenId === this.idCuenta ? 'Enviado' : 'Recibido';
   }
 

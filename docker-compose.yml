@@ -32,26 +32,3 @@ services:
       ME_CONFIG_BASICAUTH: false
     networks:
       - app-tier
-
-  app_banking:
-    build: ./backend/banking-backend
-    ports:
-      - "8080:8080"
-    environment: 
-      SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/bankingBD
-      SPRING_DATA_REDIS_HOST: redis
-      SPRING_DATA_REDIS_PORT: 6379
-    depends_on:
-      - mongo
-      - redis
-    networks:
-      - app-tier
-
-  frontend:
-    build: ./frontend/banking-frontend
-    ports:
-      - "4200:80"  
-    depends_on:
-      - app_banking
-    networks:
-      - app-tier
