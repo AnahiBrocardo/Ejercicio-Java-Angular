@@ -1,0 +1,14 @@
+<app-detalle-cuenta [id]="idCuenta"></app-detalle-cuenta>
+
+<div class="acciones">
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title> Ver movimientos </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <app-movimientos></app-movimientos>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <button mat-flat-button color="primary" (click)="irATransferencia()">Transferir</button>
+</div>

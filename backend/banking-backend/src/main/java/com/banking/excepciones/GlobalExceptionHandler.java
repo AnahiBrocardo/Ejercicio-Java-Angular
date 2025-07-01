@@ -21,6 +21,13 @@ public class GlobalExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ErrorResponse handleIllegalArgument(IllegalArgumentException ex) {
+        logger.warn("Argumento ilegal: {}", ex.getMessage());
+        return new ErrorResponse(ex, HttpStatus.BAD_REQUEST.value());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(TransferenciaInvalidaException.class)
     public ErrorResponse handleTransferenciaInvalida(TransferenciaInvalidaException ex) {
         logger.warn("Transferencia inválida: {}", ex.getMessage());

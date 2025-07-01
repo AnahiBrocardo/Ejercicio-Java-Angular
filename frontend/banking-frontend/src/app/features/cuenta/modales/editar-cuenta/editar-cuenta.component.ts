@@ -2,8 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CuentaBancaria } from 'src/app/interfaces/cuentaBancaria.model';
-import { CuentaService } from 'src/app/servicios/cuenta/cuenta.service';
-import Swal from 'sweetalert2';
+import { Saldo } from 'src/app/interfaces/saldo.model';
 
 @Component({
   selector: 'app-editar-cuenta',
@@ -16,7 +15,6 @@ export class EditarCuentaComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private cuentaService: CuentaService,
     public dialogRef: MatDialogRef<EditarCuentaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: CuentaBancaria
   ) {
@@ -24,6 +22,7 @@ export class EditarCuentaComponent implements OnInit {
       saldo: [data.saldo, [Validators.required, Validators.min(0)]]
     });
   }
+  
   ngOnInit(): void {
 
   }
@@ -34,7 +33,7 @@ export class EditarCuentaComponent implements OnInit {
       return;
     }
 
-    const saldoDTO = {
+    const saldoDTO: Saldo = {
       cuentaId: this.data.id,
       saldo: this.formSaldo.value.saldo
     };

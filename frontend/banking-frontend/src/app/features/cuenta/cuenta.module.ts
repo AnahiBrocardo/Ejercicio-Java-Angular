@@ -16,9 +16,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { CuentaPageComponent } from 'src/app/features/cuenta/cuenta-page/cuenta-page.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  declarations: [ListarCuentasComponent, CrearCuentaComponent, TransferenciaComponent, MovimientosComponent, DetalleCuentaComponent, EditarCuentaComponent],
+  declarations: [
+    ListarCuentasComponent,
+    CrearCuentaComponent,
+    TransferenciaComponent,
+    MovimientosComponent,
+    DetalleCuentaComponent,
+    EditarCuentaComponent,
+    CuentaPageComponent
+  ],
   imports: [
     CommonModule,
     CuentaRoutingModule,
@@ -29,7 +40,9 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatExpansionModule,
+     MatSelectModule,
   ]
 })
 export class CuentaModule { }

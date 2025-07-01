@@ -1,16 +1,12 @@
 <div class="detalle-cuenta-modal">
   <div class="encabezado">
     <h1>Detalle Cuenta</h1>
-    <div class="acciones">
-      <button mat-flat-button color="accent" (click)="irAHistorial()">Historial</button>
-      <button mat-flat-button color="primary" (click)="irATransferencia()">Transferir</button>
-    </div>
   </div>
 
   <div class="info">
-    <p><strong>Nombre:</strong> {{ data.nombre }}</p>
-    <p><strong>Apellido:</strong> {{ data.apellido }}</p>
-    <p><strong>Saldo:</strong> ${{ data.saldo | number:'1.2-2' }}</p>
-    <p><strong>Número de cuenta:</strong> {{ data.numeroCuenta }}</p>
+    <p><strong>Nombre:</strong> {{ cuenta?.nombre }}</p>
+    <p><strong>Apellido:</strong> {{ cuenta?.apellido }}</p>
+    <p><strong>Saldo:</strong> ${{ cuenta?.saldo | number:'1.2-2' }}</p>
+    <p><strong>Número de cuenta:</strong> {{ cuenta?.numeroCuenta }}</p>
   </div>
 </div>

@@ -1,7 +1,11 @@
 package com.banking.services;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +16,7 @@ import com.banking.excepciones.TransferenciaInvalidaException;
 import com.banking.models.documents.CuentaBancaria;
 import com.banking.models.documents.MovimientoCuenta;
 import com.banking.models.dtos.MovimientoCuentaDTO;
+import com.banking.models.dtos.MovimientoDTOResponse;
 import com.banking.repositories.CuentaBancariaRepository;
 import com.banking.repositories.MovimientoCuentaRepository;
 
@@ -25,7 +30,6 @@ public class MovimientoCuentaService {
 
   private static final Logger logger = LoggerFactory.getLogger(MovimientoCuentaService.class);
 
-  @CacheEvict(value = "saldoCuenta", key = "#idCuenta")
   public MovimientoCuenta crearMovimiento(MovimientoCuentaDTO movimientoCuentaDTO) {
     logger.info("Iniciando creación de movimiento entre cuenta {} y cuenta {} por monto ${}",
         movimientoCuentaDTO.getCuentaOrigenId(),
@@ -52,10 +56,6 @@ public class MovimientoCuentaService {
         .activa(true)
         .build();
 
-    logger.info("Iniciando creación de movimiento entre cuenta {} y cuenta {} por monto ${}",
-        movimientoCuentaDTO.getCuentaOrigenId(),
-        movimientoCuentaDTO.getCuentaDestinoId(),
-        movimientoCuentaDTO.getMonto());
 
     actualizarSaldos(cuentaOrigen, cuentaDestino, movimientoCuentaDTO.getMonto());
     MovimientoCuenta movimientoGuardado = movimientoCuentaRepository.save(movimientoCuenta);
@@ -65,15 +65,45 @@ public class MovimientoCuentaService {
     return movimientoGuardado;
   }
 
-  public List<MovimientoCuenta> obtenerMovimientos(String idCuenta) {
+  public List<MovimientoDTOResponse> obtenerMovimientos(String idCuenta) {
     verificarExitenciaCuenta(idCuenta);
-    return movimientoCuentaRepository.findByCuentaOrigenIdOrCuentaDestinoId(idCuenta, idCuenta);
+
+    List<MovimientoCuenta> movimientos = movimientoCuentaRepository
+        .findByCuentaOrigenIdOrCuentaDestinoId(idCuenta, idCuenta);
+
+    if (movimientos == null || movimientos.isEmpty()) {
+      throw new RecursoNoEncontradoException("No se encontraron movimientos asociados a la cuenta ID " + idCuenta);
+    }
+
+    List<MovimientoDTOResponse> listaRespuesta = new ArrayList<>();
+
+    for (MovimientoCuenta m : movimientos) {
+      String idContraparte = idCuenta.equals(m.getCuentaOrigenId()) ? m.getCuentaDestinoId() : m.getCuentaOrigenId();
+
+      Optional<CuentaBancaria> contraparteOpt = cuentaBancariaRepository.findById(idContraparte);
+
+      String nombreCompletoContraparte = contraparteOpt
+          .map(c -> c.getNombre() + " " + c.getApellido())
+          .orElse("Cuenta desconocida");
+
+      MovimientoDTOResponse dto = new MovimientoDTOResponse(
+          idCuenta,
+          nombreCompletoContraparte,
+          m.getMonto(),
+          m.getFecha());
+
+      listaRespuesta.add(dto);
+    }
+
+    return listaRespuesta;
   }
 
   private void verificarSaldo(CuentaBancaria cuenta, double monto) {
     if (cuenta.getSaldo() < monto) {
-      logger.warn("Saldo insuficiente. Saldo actual: {}, monto requerido: {}", cuenta.getSaldo(), monto); 
-      throw new TransferenciaInvalidaException("EL saldo de la cuenta ID " + cuenta.getId() + "inuficiente");
+      logger.warn("Saldo insuficiente. Saldo actual: {}, monto requerido: {}", cuenta.getSaldo(), monto);
+      throw new TransferenciaInvalidaException("El saldo de la cuenta ID " + cuenta.getId() + " es insuficiente.");
+
+
     }
   }
 

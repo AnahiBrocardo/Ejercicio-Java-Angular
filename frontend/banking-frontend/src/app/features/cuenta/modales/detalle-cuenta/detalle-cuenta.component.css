@@ -1,6 +1,6 @@
 .detalle-cuenta {
   color: #333;
-  max-width: 100%;
+  max-width: 90%;
   padding: 1rem;
   margin: 0 auto;
 }
@@ -8,7 +8,7 @@
 .detalle-cuenta h1 {
   margin-bottom: 1rem;
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: #565859;
 }
 

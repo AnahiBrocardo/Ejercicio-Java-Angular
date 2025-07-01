@@ -20,22 +20,13 @@ public class MovimientoCuentaController {
     @Autowired
     MovimientoCuentaService movimientoCuentaService;
 
-@PostMapping
-    public ResponseEntity<?> crearMovimiento(@RequestBody MovimientoCuentaDTO movimientoCuentaDTO){
-    MovimientoCuenta movimientoCuenta = movimientoCuentaService.crearMovimiento(movimientoCuentaDTO);
-
-    Response<MovimientoCuenta> response = Response.<MovimientoCuenta>builder()
-        .status(201)
-        .message("Transferencia realizada con exito")
-        .data(movimientoCuenta)
-        .build();
-
-    return ResponseEntity.status(201).body(response);
+    @PostMapping
+    public ResponseEntity<?> crearMovimiento(@RequestBody MovimientoCuentaDTO movimientoCuentaDTO) {
+        return ResponseEntity.ok(this.movimientoCuentaService.crearMovimiento(movimientoCuentaDTO));
     }
 
-
-    @GetMapping ("/{id}")
-    public ResponseEntity<?> obtenerMovimientos(@PathVariable String id){
+    @GetMapping("/{id}")
+    public ResponseEntity<?> obtenerMovimientos(@PathVariable String id) {
         return ResponseEntity.ok(this.movimientoCuentaService.obtenerMovimientos(id));
     }
 

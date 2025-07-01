@@ -41,7 +41,7 @@ public class CuentaBancariaService {
         return cuentaRepository.findByActivaTrue();
     }
 
-    @Cacheable(value = "saldoCuenta", key = "#id")
+    //@Cacheable(value = "saldoCuenta", key = "#id")
     public CuentaBancaria obtenerCuentaPorId(String id) {
         logger.info("Buscando cuenta por ID: {}", id);
         CuentaBancaria cuenta = cuentaRepository.findByIdAndActivaTrue(id);

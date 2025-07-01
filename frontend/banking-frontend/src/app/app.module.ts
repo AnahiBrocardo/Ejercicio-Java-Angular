@@ -17,7 +17,6 @@ import { CuentaModule } from './features/cuenta/cuenta.module';
     NoopAnimationsModule,
     HttpClientModule,
     CuentaModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
