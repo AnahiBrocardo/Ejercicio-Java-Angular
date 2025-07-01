@@ -1,0 +1,56 @@
+.detalle-cuenta-modal {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+}
+
+.encabezado h1 {
+  color: #1a3d8f;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 4rem;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px; /* espacio vertical entre filas */
+  font-size: 1rem;
+}
+
+.info-table thead tr {
+  background-color: #2b54b5;
+  color: white;
+  text-align: left;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(26, 61, 143, 0.3);
+}
+
+.info-table thead th {
+  padding: 14px 20px;
+  font-weight: 700;
+  border: none;
+  user-select: none;
+}
+
+.info-table tbody tr {
+  background-color: #f9faff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(26, 61, 143, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.info-table tbody tr:hover {
+  background-color: #d6e3ff;
+  cursor: default;
+}
+
+.info-table tbody td {
+  padding: 14px 20px;
+  border: none;
+  vertical-align: middle;
+  color: #344767;
+  font-weight: 500;
+  word-break: break-word;
+}

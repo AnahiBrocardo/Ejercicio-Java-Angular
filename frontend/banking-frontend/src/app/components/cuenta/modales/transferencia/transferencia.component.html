@@ -1,8 +1,11 @@
-<h2 mat-dialog-title>Transferencia</h2>
-<form [formGroup]="form" (ngSubmit)="enviarTransferencia()">
-  
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Cuenta destino</mat-label>
+<h1 mat-dialog-title class="titulo-transferencia"> 
+  Nueva transferencia  
+</h1>
+
+<form [formGroup]="form" (ngSubmit)="enviarTransferencia()" class="form-transferencia">
+
+  <mat-form-field appearance="fill" class="form-campo">
+    <mat-label> * Cuenta destino</mat-label>
     <mat-select formControlName="cuentaDestinoId">
       <mat-option *ngFor="let cuenta of cuentasDestino" [value]="cuenta.id">
         {{ cuenta?.nombre }} {{ cuenta?.apellido }} - {{ cuenta?.numeroCuenta }}
@@ -13,19 +16,20 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Monto</mat-label>
+  <mat-form-field appearance="fill" class="form-campo">
+    <mat-label>* Monto</mat-label>
     <input matInput type="number" formControlName="monto" />
     <mat-error *ngIf="form.get('monto')?.hasError('required')">
       Debe ingresar monto
     </mat-error>
     <mat-error *ngIf="form.get('monto')?.hasError('min')">
-      El monto debe ser mayor a cero
+      El monto ingresado debe ser mayor a 0
     </mat-error>
   </mat-form-field>
 
-  <div mat-dialog-actions>
+  <div class="acciones-form">
     <button mat-button type="button" (click)="cancelar()">Cancelar</button>
     <button mat-flat-button color="primary" type="submit">Enviar</button>
   </div>
+
 </form>

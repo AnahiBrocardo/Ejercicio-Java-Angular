@@ -1,0 +1,25 @@
+<div class="detalle-cuenta-modal">
+  <div class="encabezado">
+    <h1>Detalle Cuenta</h1>
+  </div>
+
+  <table class="info-table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Saldo</th>
+        <th>Número de cuenta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ cuenta?.nombre }}</td>
+        <td>{{ cuenta?.apellido }}</td>
+        <td>$ {{ cuenta?.saldo | number:'1.2-2' }}</td>
+        <td>{{ cuenta?.numeroCuenta }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

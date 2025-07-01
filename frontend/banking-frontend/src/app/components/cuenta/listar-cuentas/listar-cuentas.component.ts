@@ -22,6 +22,10 @@ export class ListarCuentasComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerCuentas();
+
+     this.cuentaService.onCuentaActualizada().subscribe(() => {
+      this.obtenerCuentas();
+    });
   }
 
   obtenerCuentas(): void {

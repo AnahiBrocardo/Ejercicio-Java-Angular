@@ -1,16 +1,35 @@
-<div class="container-contenido">
-<app-detalle-cuenta [id]="idCuenta"></app-detalle-cuenta>
+<section class="container-contenido">
 
-<div class="acciones">
+  <div class="header-actions">
+    <button mat-stroked-button color="primary" (click)="volverALista()">
+      <mat-icon>arrow_back</mat-icon>
+      Volver
+    </button>
+  </div>
+
+  <div class="detalle-cuenta-wrapper">
+    <app-detalle-cuenta [id]="idCuenta"></app-detalle-cuenta>
+  </div>
+
+  <!-- Transferencia con texto explicativo -->
+  <div class="transferencia-instruccion">
+    <p>Realizar nueva transferencia </p>
+    <button mat-flat-button color="primary" (click)="irATransferencia()">
+      <mat-icon>swap_horiz</mat-icon>
+      Transferir
+    </button>
+  </div>
+
+  <!-- Movimientos -->
+  <div class="acciones">
     <mat-accordion>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title> Ver movimientos </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <app-movimientos [idCuenta]="idCuenta"></app-movimientos>
-        </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="movimientos">Ver movimientos</mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-movimientos [idCuenta]="idCuenta"></app-movimientos>
+      </mat-expansion-panel>
     </mat-accordion>
-    <button mat-flat-button color="primary" (click)="irATransferencia()">Transferir</button>
-</div>
-</div>
+  </div>
+
+</section>

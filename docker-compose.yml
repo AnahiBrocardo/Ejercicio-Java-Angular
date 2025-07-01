@@ -32,3 +32,30 @@ services:
       ME_CONFIG_BASICAUTH: false
     networks:
       - app-tier
+
+  backend:
+    build:
+      context: ./backend/banking-backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/bankingBD
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - app-tier
+
+  frontend:
+    build:
+      context: ./frontend/banking-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    networks:
+      - app-tier

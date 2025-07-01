@@ -1,4 +1,9 @@
+.movimientos{
+  margin-top: 5vh;
+}
+
 .tabla-movimientos {
+  
   width: 100%;
   min-width: 600px; 
   border-radius: 8px;

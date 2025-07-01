@@ -61,7 +61,27 @@ export class TransferenciaComponent implements OnInit {
       monto: this.form.value.monto
     };
 
-   this.dialogRef.close(transferencia);
+    if (transferencia) {
+      this.movimientoService.crearTransferencia(transferencia).subscribe({
+        next: (movimiento) => {
+            this.cuentaService.emitirCuentaActualizada(this.data.cuentaOrigenId);
+            this.dialogRef.close(); 
+            Swal.fire('Éxito', 'Transferencia realizada con éxito.', 'success');
+        },
+        error: (err) => {
+          let mensaje = 'Ocurrió un error al procesar la transferencia.';
+          if (err.status === 400) {
+            mensaje = 'Datos inválidos.';
+          } else if (err.status === 500) {
+            mensaje = 'Error del servidor. Intente más tarde.';
+          } else if (err.error?.message) {
+            mensaje = err.error.message;
+          }
+          Swal.fire('Error', mensaje, 'error');
+        }
+      });
+    }
+
   }
 
   cancelar() {

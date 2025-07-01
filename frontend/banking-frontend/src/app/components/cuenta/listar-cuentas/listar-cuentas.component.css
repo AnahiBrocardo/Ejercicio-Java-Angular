@@ -1,7 +1,9 @@
 .tabla-cuentas {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  padding: 2rem;
+  min-height: 70vh;
+  margin-top: 5vh;
 }
 
 .tabla-container {
@@ -12,10 +14,11 @@
 
 .titulo-tabla {
   color: #1a3d8f;
-  font-size: 28px;
-  font-weight: 500;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 4rem;
+  letter-spacing: 0.05em;
+  padding-top: 2rem;
 }
 
 .tabla-encabezado {
@@ -36,7 +39,7 @@ button[mat-flat-button] {
 }
 
 button[mat-flat-button]:hover {
- background-color: #dc712e;
+  background-color: #dc712e;
   transform: translateY(-3px);
 }
 
@@ -47,30 +50,38 @@ button[mat-flat-button]:hover {
   overflow: hidden;
 }
 
-.mat-header-cell, .mat-cell {
+.mat-header-cell,
+.mat-cell {
   padding: 12px 14px;
   font-size: 14px;
   text-align: left;
-  border-bottom: 1px solid #ddd; /* línea gris clara entre filas */
-  color: inherit; /* que las celdas no tengan color especial */
+  border-bottom: 1px solid #ddd;
+  /* línea gris clara entre filas */
+  color: inherit;
+  /* que las celdas no tengan color especial */
 }
 
 .mat-header-cell {
-  background-color: transparent; /* sin fondo */
+  background-color: transparent;
+  /* sin fondo */
   font-weight: 700;
   text-transform: uppercase;
-  color: #1a3d8f; /* texto azul oscuro solo en encabezados */
-  border-bottom: 1px solid #1a3d8f; /* línea más gruesa azul en encabezados */
+  color: #1a3d8f;
+  /* texto azul oscuro solo en encabezados */
+  border-bottom: 1px solid #1a3d8f;
+  /* línea más gruesa azul en encabezados */
 }
 
 .mat-row:hover {
-  background-color: #f5faff; /* muy suave azul para hover */
+  background-color: #f5faff;
+  /* muy suave azul para hover */
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 button[mat-icon-button] {
-  color: #264e7e; /* azul oscuro */
+  color: #264e7e;
+  /* azul oscuro */
 }
 
 button[mat-icon-button]:hover {

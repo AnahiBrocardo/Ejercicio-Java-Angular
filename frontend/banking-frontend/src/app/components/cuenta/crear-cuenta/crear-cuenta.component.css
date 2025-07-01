@@ -45,46 +45,9 @@ mat-error {
   margin-top: 1.5rem;
 }
 
+button[mat-button],
 button[mat-flat-button] {
-  background-color: #ff7f3c; /* naranja para guardar */
-  color: white;
-  font-weight: 700;
-  border-radius: 6px;
-  padding: 6px 28px; /* más ancho horizontal */
-  font-size: 14px;
-  min-width: 120px; /* ancho mínimo */
-  transition: background-color 0.3s;
-  border: none;
-  cursor: pointer;
-  text-align: center;
+  text-transform: none;
+  font-weight: 500;
 }
 
-button[mat-flat-button]:hover:not(:disabled) {
-  background-color: #e6732a;
-  color: white;
-}
-
-button[mat-flat-button]:disabled {
-  background-color: #c4b09c;
-  cursor: default;
-  color: #f1e7d3;
-}
-
-button[mat-button] {
-  background-color: #d9534f; /* rojo para cancelar */
-  color: white;
-  font-weight: 700;
-  padding: 6px 28px; 
-  font-size: 14px;
-  min-width: 120px; 
-  border-radius: 6px;
-  cursor: pointer;
-  border: none;
-  transition: background-color 0.3s;
-  text-align: center;
-}
-
-button[mat-button]:hover {
-  background-color: #c22823;
-  color: white;
-}

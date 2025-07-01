@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject  } from 'rxjs';
 import { CuentaBancaria } from 'src/app/interfaces/cuentaBancaria.model';
 import { Saldo } from 'src/app/interfaces/saldo.model';
 
@@ -10,6 +10,7 @@ import { Saldo } from 'src/app/interfaces/saldo.model';
 export class CuentaService {
 
   private apiUrl="http://localhost:8080/accounts";
+  private cuentaActualizadaSubject = new Subject<string>();
 
   constructor(private http: HttpClient) { }
 
@@ -31,5 +32,13 @@ export class CuentaService {
 
   eliminarCuenta(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  emitirCuentaActualizada(id: string) {
+    this.cuentaActualizadaSubject.next(id);
+  }
+
+  onCuentaActualizada(): Observable<string> {
+    return this.cuentaActualizadaSubject.asObservable();
   }
 }

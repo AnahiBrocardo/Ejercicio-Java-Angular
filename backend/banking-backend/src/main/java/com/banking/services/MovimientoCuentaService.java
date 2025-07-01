@@ -30,6 +30,7 @@ public class MovimientoCuentaService {
 
   private static final Logger logger = LoggerFactory.getLogger(MovimientoCuentaService.class);
 
+  @CacheEvict(value = "saldoCuenta", key = "#movimientoCuentaDTO.cuentaOrigenId")
   public MovimientoCuenta crearMovimiento(MovimientoCuentaDTO movimientoCuentaDTO) {
     logger.info("Iniciando creación de movimiento entre cuenta {} y cuenta {} por monto ${}",
         movimientoCuentaDTO.getCuentaOrigenId(),

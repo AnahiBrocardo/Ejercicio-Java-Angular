@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 import { CuentaRoutingModule } from './cuenta-routing.module';
 import { ListarCuentasComponent } from './listar-cuentas/listar-cuentas.component';
 import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
-import { TransferenciaComponent } from './transferencia/transferencia.component';
+import { TransferenciaComponent } from './modales/transferencia/transferencia.component';
 import { MovimientosComponent } from './movimientos/movimientos.component';
-import { DetalleCuentaComponent } from './modales/detalle-cuenta/detalle-cuenta.component';
+import { DetalleCuentaComponent } from './detalle-cuenta/detalle-cuenta.component';
 import { EditarCuentaComponent } from './modales/editar-cuenta/editar-cuenta.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
@@ -42,7 +42,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatIconModule,
     MatExpansionModule,
-     MatSelectModule,
+    MatSelectModule,
   ]
 })
 export class CuentaModule { }

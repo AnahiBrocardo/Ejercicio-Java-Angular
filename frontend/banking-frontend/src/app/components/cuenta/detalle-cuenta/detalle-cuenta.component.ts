@@ -16,7 +16,17 @@ export class DetalleCuentaComponent implements OnInit {
   constructor( private cuentaService: CuentaService) { }
 
   ngOnInit(): void {
-    this.cuentaService.getCuentaPorId(this.id).subscribe({
+      this.obtenerCuenta();
+
+      this.cuentaService.onCuentaActualizada().subscribe(id => {
+        
+        this.obtenerCuenta();
+        console.log('Cuenta actualizada:', this.cuenta);
+    });
+  }
+
+  obtenerCuenta(){
+   this.cuentaService.getCuentaPorId(this.id).subscribe({
       next: (cuenta) => {
         this.cuenta = cuenta;
         },
@@ -31,6 +41,6 @@ export class DetalleCuentaComponent implements OnInit {
           }
           Swal.fire('Error', mensaje, 'error');
         }            
-      });    
+      });  
   }
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListarCuentasComponent } from './listar-cuentas/listar-cuentas.component';
 import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
-import { TransferenciaComponent } from './transferencia/transferencia.component';
+import { TransferenciaComponent } from './modales/transferencia/transferencia.component';
 import { MovimientosComponent } from './movimientos/movimientos.component';
 import { EditarCuentaComponent } from './modales/editar-cuenta/editar-cuenta.component';
 import { CuentaPageComponent } from 'src/app/components/cuenta/cuenta-page/cuenta-page.component';
