@@ -61,24 +61,7 @@ export class TransferenciaComponent implements OnInit {
       monto: this.form.value.monto
     };
 
-    this.movimientoService.crearTransferencia(transferencia).subscribe({
-    next: (movimiento) => {
-      Swal.fire('Éxito', 'Transferencia realizada con éxito.', 'success');
-      this.dialogRef.close(movimiento); 
-    },
-    error: (err) => {
-      let mensaje = 'Ocurrió un error al procesar la transferencia.';
-      if (err.status === 400) {
-        mensaje = 'Datos inválidos.';
-      } else if (err.status === 500) {
-        mensaje = 'Error del servidor. Intente más tarde.';
-      } else if (err.error?.message) {
-        mensaje = err.error.message;
-      }
-      Swal.fire('Error', mensaje, 'error');
-    }
-  });
-  this.dialogRef.close('transferencia-realizada');
+   this.dialogRef.close(transferencia);
   }
 
   cancelar() {
