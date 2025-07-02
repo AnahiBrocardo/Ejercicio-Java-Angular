@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject  } from 'rxjs';
 import { CuentaBancaria } from 'src/app/interfaces/cuentaBancaria.model';
 import { Saldo } from 'src/app/interfaces/saldo.model';
+import { CuentaBancariaRequest } from 'src/app/interfaces/cuentaBancariaRequest.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class CuentaService {
     return this.http.get<CuentaBancaria>(`${this.apiUrl}/${id}`);
   }
 
-  crearCuenta(cuenta: CuentaBancaria): Observable<CuentaBancaria> {
+  crearCuenta(cuenta: CuentaBancariaRequest): Observable<CuentaBancaria> {
     return this.http.post<CuentaBancaria>(this.apiUrl, cuenta);
   }
 

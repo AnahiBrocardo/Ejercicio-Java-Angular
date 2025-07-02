@@ -20,13 +20,13 @@ export class MovimientosComponent implements OnInit {
     this.movimientoService.getMovimientoPorId(this.idCuenta).subscribe({
       next: (data) => {
         this.movimientos = data;
-        console.log(data);
       },
       error: (err) => {
-        let mensaje;
-        if (err.status === 500) {
+        let mensaje= 'Ocurrió un error inesperado.';
+        
+        if (err && err.status === 500) {
           mensaje = 'Error del servidor. Intente más tarde.';
-        } else if (err.error?.message) {
+        } else if (err && err.error && err.error.message) {
           mensaje = err.error.message;
         }
         Swal.fire('Error', mensaje, 'error');

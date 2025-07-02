@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { CuentaService } from 'src/app/servicios/cuenta/cuenta.service';
 
 @Component({
   selector: 'app-crear-cuenta',
@@ -13,7 +12,6 @@ export class CrearCuentaComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-     private cuentaService: CuentaService,
     private dialogRef: MatDialogRef<CrearCuentaComponent>
   ) {
     this.formCrearCuenta = this.fb.group({

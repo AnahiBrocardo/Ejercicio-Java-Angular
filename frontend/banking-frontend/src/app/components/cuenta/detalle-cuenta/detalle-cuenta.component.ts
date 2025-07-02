@@ -21,7 +21,6 @@ export class DetalleCuentaComponent implements OnInit {
       this.cuentaService.onCuentaActualizada().subscribe(id => {
         
         this.obtenerCuenta();
-        console.log('Cuenta actualizada:', this.cuenta);
     });
   }
 
@@ -31,12 +30,12 @@ export class DetalleCuentaComponent implements OnInit {
         this.cuenta = cuenta;
         },
         error: (err) => {
-          let mensaje;
-          if (err.status === 404) {
+          let mensaje='Ocurrio un error inesperado';
+          if (err && err.status === 404) {
             mensaje = 'No se encontraron resultados.';
-          } else if (err.status === 500) {
+          } else if (err && err.status === 500) {
             mensaje = 'Error del servidor. Intente más tarde.';
-          } else if (err.error?.message) {
+          } else if (err && err.error && err.error.message) {
             mensaje = err.error.message;
           }
           Swal.fire('Error', mensaje, 'error');

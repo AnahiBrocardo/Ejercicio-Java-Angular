@@ -1,5 +1,5 @@
 export interface MovimientoDTO {
-cuentaOrigenId: string;
+  cuentaOrigenId: string;
   cuentaDestinoId: string;
   monto: number;
   fecha: string;

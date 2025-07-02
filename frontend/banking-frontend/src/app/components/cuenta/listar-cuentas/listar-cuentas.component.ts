@@ -23,7 +23,7 @@ export class ListarCuentasComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerCuentas();
 
-     this.cuentaService.onCuentaActualizada().subscribe(() => {
+    this.cuentaService.onCuentaActualizada().subscribe(() => {
       this.obtenerCuentas();
     });
   }
@@ -55,9 +55,7 @@ export class ListarCuentasComponent implements OnInit {
             Swal.fire('Cuenta actualizada correctamente', '', 'success');
             this.obtenerCuentas();
           },
-          error: err => {
-            error: (err) => this.handleError(err);
-          }
+          error: (err) => this.handleError(err)
         });
       }
     });
@@ -78,9 +76,7 @@ export class ListarCuentasComponent implements OnInit {
             Swal.fire('Eliminado', 'La cuenta bancaria ha sido eliminada correctamente', 'success');
             this.obtenerCuentas();
           },
-          error: (err) => {
-            error: (err) => this.handleError(err);
-          }
+          error: (err) => this.handleError(err) 
         });
       }
     });
@@ -93,14 +89,13 @@ export class ListarCuentasComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.cuentaService.crearCuenta(result).subscribe({
+        const cuentaParaCrear = { nombre: result.nombre, apellido: result.apellido };
+        this.cuentaService.crearCuenta(cuentaParaCrear).subscribe({
           next: () => {
             Swal.fire('La cuenta bancaria ha sido creada correctamente', 'success');
             this.obtenerCuentas();
           },
-          error: (err) => {
-            error: (err) => this.handleError(err);
-          }
+         error: (err) => this.handleError(err)
         })
       }
     });

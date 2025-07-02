@@ -70,12 +70,10 @@ export class TransferenciaComponent implements OnInit {
         },
         error: (err) => {
           let mensaje = 'Ocurrió un error al procesar la transferencia.';
-          if (err.status === 400) {
+          if (err && err.status === 400) {
             mensaje = 'Datos inválidos.';
-          } else if (err.status === 500) {
+          } else if (err && err.status === 500) {
             mensaje = 'Error del servidor. Intente más tarde.';
-          } else if (err.error?.message) {
-            mensaje = err.error.message;
           }
           Swal.fire('Error', mensaje, 'error');
         }

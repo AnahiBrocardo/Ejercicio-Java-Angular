@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TransferenciaComponent } from '../modales/transferencia/transferencia.component';
 import { MatDialog } from '@angular/material/dialog';
-import { MovimientoService } from 'src/app/servicios/movimiento/movimiento.service';
 import Swal from 'sweetalert2';
-import { CuentaService } from 'src/app/servicios/cuenta/cuenta.service';
 
 @Component({
   selector: 'app-cuenta-page',
@@ -15,9 +13,7 @@ export class CuentaPageComponent implements OnInit {
   mostrarMovimientos = false;
   idCuenta!: string;
 
-  constructor(private route: ActivatedRoute, private dialog: MatDialog, private router: Router,
-    private movimientoService: MovimientoService,
-    private cuentaService: CuentaService
+  constructor(private route: ActivatedRoute, private dialog: MatDialog, private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -33,11 +29,8 @@ export class CuentaPageComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      
     });
-
   }
-
 
 
   handleError(error: any): void {
