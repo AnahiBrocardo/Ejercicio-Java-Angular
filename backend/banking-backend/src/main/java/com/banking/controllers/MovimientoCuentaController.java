@@ -14,22 +14,40 @@ import com.banking.models.documents.MovimientoCuenta;
 import com.banking.models.dtos.MovimientoCuentaDTO;
 import com.banking.services.MovimientoCuentaService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/movimientos")
+@Tag(name = "Movimientos", description = "Movimientos entre cuentas bancarias")
 public class MovimientoCuentaController {
 
-    @Autowired
-    MovimientoCuentaService movimientoCuentaService;
+  @Autowired
+  MovimientoCuentaService movimientoCuentaService;
 
-    @PostMapping
-    public ResponseEntity<?> crearMovimiento(@RequestBody MovimientoCuentaDTO movimientoCuentaDTO) {
-      MovimientoCuenta movimientoCreado = this.movimientoCuentaService.crearMovimiento(movimientoCuentaDTO);
+  @PostMapping
+  @Operation(summary = "Crear un nuevo movimiento", description = "Crea una transferencia entre cuentas bancarias")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "201", description = "Movimiento creado exitosamente"),
+      @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos"),
+      @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+  })
+  public ResponseEntity<?> crearMovimiento(@RequestBody MovimientoCuentaDTO movimientoCuentaDTO) {
+    MovimientoCuenta movimientoCreado = this.movimientoCuentaService.crearMovimiento(movimientoCuentaDTO);
     return ResponseEntity.status(HttpStatus.CREATED).body(movimientoCreado);
-    }
+  }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> obtenerMovimientos(@PathVariable String id) {
-        return ResponseEntity.ok(this.movimientoCuentaService.obtenerMovimientos(id));
-    }
+  @GetMapping("/{id}")
+  @Operation(summary = "Obtener movimientos por cuenta", description = "Devuelve todos los movimientos asociados a una cuenta bancaria")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Movimientos obtenidos exitosamente"),
+        @ApiResponse(responseCode = "404", description = "Cuenta no encontrada"),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
+  public ResponseEntity<?> obtenerMovimientos(@PathVariable String id) {
+    return ResponseEntity.ok(this.movimientoCuentaService.obtenerMovimientos(id));
+  }
 
 }
