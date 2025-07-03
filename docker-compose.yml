@@ -46,6 +46,8 @@ services:
     depends_on:
       - mongo
       - redis
+    volumes:
+      - ./logs:/app/logs
     networks:
       - app-tier
 

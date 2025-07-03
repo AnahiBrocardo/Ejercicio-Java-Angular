@@ -52,6 +52,7 @@ export class ListarCuentasComponent implements OnInit {
       if (result) {
         this.cuentaService.actualizarSaldo(result).subscribe({
           next: () => {
+            this.cuentaService.emitirCuentaActualizada(cuenta.id);
             Swal.fire('Cuenta actualizada correctamente', '', 'success');
             this.obtenerCuentas();
           },
