@@ -24,6 +24,7 @@ export class DetalleCuentaComponent implements OnInit {
     });
   }
 
+  
   obtenerCuenta(){
    this.cuentaService.getCuentaPorId(this.id).subscribe({
       next: (cuenta) => {
