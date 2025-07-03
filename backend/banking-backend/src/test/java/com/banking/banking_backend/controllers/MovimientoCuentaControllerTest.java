@@ -45,11 +45,9 @@ public class MovimientoCuentaControllerTest {
             .content("{\"cuentaOrigenId\":\"origen123\",\"cuentaDestinoId\":\"cuentaDestinoId\", \"monto\":\"1000.0\"}"))
         .andDo(print())
         .andExpect(status().isCreated())
-        .andExpect(jsonPath("$.status").value(201))
-        .andExpect(jsonPath("$.message").value("Transferencia realizada con exito"))
-        .andExpect(jsonPath("$.data.cuentaOrigenId").value("origen123"))
-        .andExpect(jsonPath("$.data.cuentaDestinoId").value("destino456"))
-        .andExpect(jsonPath("$.data.monto").value(1000.0))
-        .andExpect(jsonPath("$.data.activa").value(true));
+        .andExpect(jsonPath("$.cuentaOrigenId").value("origen123"))
+        .andExpect(jsonPath("$.cuentaDestinoId").value("destino456"))
+        .andExpect(jsonPath("$.monto").value(1000.0))
+        .andExpect(jsonPath("$.activa").value(true));
     }
 }

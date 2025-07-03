@@ -1,5 +1,7 @@
 package com.banking.banking_backend.services;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,6 +11,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.banking.excepciones.RecursoNoEncontradoException;
+import com.banking.excepciones.SaldoInvalidoException;
 import com.banking.models.documents.CuentaBancaria;
 import com.banking.models.dtos.CuentaBancariaDTO;
 import com.banking.models.dtos.SaldoDTO;
@@ -18,119 +21,164 @@ import com.banking.services.CuentaBancariaService;
 @ExtendWith(MockitoExtension.class)
 class CuentaBancariaServiceTest {
 
-    @Mock
-    private CuentaBancariaRepository cuentaBancariaRepository;
+        @Mock
+        private CuentaBancariaRepository cuentaBancariaRepository;
 
-    @InjectMocks
-    private CuentaBancariaService cuentaBancariaService;
+        @InjectMocks
+        private CuentaBancariaService cuentaBancariaService;
 
-    @Test
-    public void testCrearCuentaBancaria() {
-        CuentaBancariaDTO cuentaDTO = new CuentaBancariaDTO("Juan", "Perez");
+        @Test
+        public void testCrearCuentaBancaria() {
+                CuentaBancariaDTO cuentaDTO = new CuentaBancariaDTO("Juan", "Perez");
 
-        Mockito.when(cuentaBancariaRepository.existsByNumeroCuenta(Mockito.anyString()))
-           .thenReturn(false);
+                Mockito.when(cuentaBancariaRepository.existsByNumeroCuenta(Mockito.anyString()))
+                                .thenReturn(false);
 
-        CuentaBancaria cuentaGuardada = CuentaBancaria.builder()
-                .id("abc1234")
-                .nombre("Juan")
-                .apellido("Perez")
-                .activa(true)
-                .saldo(0)
-                .build();
+                CuentaBancaria cuentaGuardada = CuentaBancaria.builder()
+                                .id("abc1234")
+                                .nombre("Juan")
+                                .apellido("Perez")
+                                .activa(true)
+                                .saldo(0)
+                                .build();
 
-        Mockito.when(cuentaBancariaRepository.save(Mockito.any(CuentaBancaria.class)))
-                .thenReturn(cuentaGuardada);
+                Mockito.when(cuentaBancariaRepository.save(Mockito.any(CuentaBancaria.class)))
+                                .thenReturn(cuentaGuardada);
 
-        CuentaBancaria resultado = cuentaBancariaService.crearCuentaBancaria(cuentaDTO);
+                CuentaBancaria resultado = cuentaBancariaService.crearCuentaBancaria(cuentaDTO);
 
-        Assertions.assertNotNull(resultado);
-        Assertions.assertEquals("abc1234", resultado.getId());
-        Assertions.assertEquals("Juan", resultado.getNombre());
-        Assertions.assertEquals(0, resultado.getSaldo());
-    }
+                Assertions.assertNotNull(resultado);
+                Assertions.assertEquals("abc1234", resultado.getId());
+                Assertions.assertEquals("Juan", resultado.getNombre());
+                Assertions.assertEquals(0, resultado.getSaldo());
+        }
 
-    @Test
-    void eliminarCuentaExistenteCambiaActivaGuarda(){
-    String id = "abc1234";
-    
-    CuentaBancaria cuenta = CuentaBancaria.builder()
-            .id(id)
-            .activa(true)
-            .saldo(0)
-            .build();
+        @Test
+        void eliminarCuentaExistenteCambiaActivaGuarda() {
+                String id = "abc1234";
 
-    Mockito.when(cuentaBancariaRepository.findByIdAndActivaTrue(id)).thenReturn(cuenta);
-    Mockito.when(cuentaBancariaRepository.save(Mockito.any(CuentaBancaria.class)))
-        .thenReturn(cuenta);
+                CuentaBancaria cuenta = CuentaBancaria.builder()
+                                .id(id)
+                                .activa(true)
+                                .saldo(0)
+                                .build();
 
-        
-    CuentaBancaria resultado = cuentaBancariaService.eliminarCuenta(id);
+                Mockito.when(cuentaBancariaRepository.findByIdAndActivaTrue(id)).thenReturn(cuenta);
+                Mockito.when(cuentaBancariaRepository.save(Mockito.any(CuentaBancaria.class)))
+                                .thenReturn(cuenta);
 
-    Assertions.assertFalse(resultado.isActiva());
-    }
+                CuentaBancaria resultado = cuentaBancariaService.eliminarCuenta(id);
 
-    @Test
-    void obtenerCuentaActivaExistente(){
-      String id="abc1234";
+                Assertions.assertFalse(resultado.isActiva());
+        }
 
-        CuentaBancaria cuentaGuardada = CuentaBancaria.builder()
-                .id(id)
-                .nombre("Juan")
-                .apellido("Perez")
-                .activa(true)
-                .saldo(0)
-                .build();
+        @Test
+        void obtenerCuentaActivaExistente() {
+                String id = "abc1234";
 
-        Mockito.when(cuentaBancariaRepository.findByIdAndActivaTrue(id))
-                .thenReturn(cuentaGuardada);
-        
-        CuentaBancaria resultado= cuentaBancariaService.obtenerCuentaPorId(id);
+                CuentaBancaria cuentaGuardada = CuentaBancaria.builder()
+                                .id(id)
+                                .nombre("Juan")
+                                .apellido("Perez")
+                                .activa(true)
+                                .saldo(0)
+                                .build();
 
-        Assertions.assertNotNull(resultado);
-        Assertions.assertEquals("abc1234", resultado.getId());
-        Assertions.assertEquals("Juan", resultado.getNombre());
-        Assertions.assertEquals(0, resultado.getSaldo());
-    }
+                Mockito.when(cuentaBancariaRepository.findByIdAndActivaTrue(id))
+                                .thenReturn(cuentaGuardada);
 
-    @Test
-    void actualizarSaldoCuentaExistente(){
-    String idCuenta="abc124";
-    double nuevoSaldo=2500.0;
+                CuentaBancaria resultado = cuentaBancariaService.obtenerCuentaPorId(id);
 
-    SaldoDTO saldoDTO= new SaldoDTO(idCuenta, nuevoSaldo);
+                Assertions.assertNotNull(resultado);
+                Assertions.assertEquals("abc1234", resultado.getId());
+                Assertions.assertEquals("Juan", resultado.getNombre());
+                Assertions.assertEquals(0, resultado.getSaldo());
+        }
 
-    CuentaBancaria cuentaExistente= CuentaBancaria.builder()
-        .id(idCuenta)
-        .nombre("Juan")
-        .apellido("Perez")
-        .activa(true)
-        .saldo(500)
-        .build();
+        @Test
+        void actualizarSaldoCuentaExistente() {
+                String idCuenta = "abc124";
+                double nuevoSaldo = 2500.0;
 
-        Mockito.when(cuentaBancariaRepository.findByIdAndActivaTrue(idCuenta))
-        .thenReturn(cuentaExistente);
+                SaldoDTO saldoDTO = new SaldoDTO(idCuenta, nuevoSaldo);
 
-        Mockito.when(cuentaBancariaRepository.save(Mockito.any(CuentaBancaria.class)))
-        .thenReturn(cuentaExistente);
+                CuentaBancaria cuentaExistente = CuentaBancaria.builder()
+                                .id(idCuenta)
+                                .nombre("Juan")
+                                .apellido("Perez")
+                                .activa(true)
+                                .saldo(500)
+                                .build();
 
-        CuentaBancaria resultado= cuentaBancariaService.actualizarSaldo(saldoDTO);
+                Mockito.when(cuentaBancariaRepository.findByIdAndActivaTrue(idCuenta))
+                                .thenReturn(cuentaExistente);
 
-        Assertions.assertNotNull(resultado);
-        Assertions.assertEquals(nuevoSaldo, resultado.getSaldo());
-      }
+                Mockito.when(cuentaBancariaRepository.save(Mockito.any(CuentaBancaria.class)))
+                                .thenReturn(cuentaExistente);
 
-   @Test
-   void actualizarSaldoCuentaInexistenteLanzaExcepcion() {
-    String cuentaId = "inexistente";
-    SaldoDTO saldoDTO = new SaldoDTO(cuentaId, 1000);
+                CuentaBancaria resultado = cuentaBancariaService.actualizarSaldo(saldoDTO);
 
-    Mockito.when(cuentaBancariaRepository.findByIdAndActivaTrue(cuentaId))
-            .thenReturn(null);
+                Assertions.assertNotNull(resultado);
+                Assertions.assertEquals(nuevoSaldo, resultado.getSaldo());
+        }
 
-    Assertions.assertThrows(RecursoNoEncontradoException.class, () -> {
-        cuentaBancariaService.actualizarSaldo(saldoDTO);
-    });
-}
+        @Test
+        void actualizarSaldoCuentaInexistenteLanzaExcepcion() {
+                String cuentaId = "inexistente";
+                SaldoDTO saldoDTO = new SaldoDTO(cuentaId, 1000);
+
+                Mockito.when(cuentaBancariaRepository.findByIdAndActivaTrue(cuentaId))
+                                .thenReturn(null);
+
+                Assertions.assertThrows(RecursoNoEncontradoException.class, () -> {
+                        cuentaBancariaService.actualizarSaldo(saldoDTO);
+                });
+        }
+
+        @Test
+        void actualizarSaldoConSaldoNegativoLanzaExcepcion() {
+                String idCuenta = "abc123";
+                SaldoDTO saldoDTO = new SaldoDTO(idCuenta, -500);
+
+                CuentaBancaria cuenta = CuentaBancaria.builder()
+                                .id(idCuenta)
+                                .activa(true)
+                                .saldo(0)
+                                .build();
+
+                Mockito.when(cuentaBancariaRepository.findByIdAndActivaTrue(idCuenta))
+                                .thenReturn(cuenta);
+
+                Assertions.assertThrows(SaldoInvalidoException.class, () -> {
+                        cuentaBancariaService.actualizarSaldo(saldoDTO);
+                });
+        }
+
+        @Test
+        void obtenerCuentaPorIdInexistenteLanzaExcepcion() {
+                String id = "no-existe";
+
+                Mockito.when(cuentaBancariaRepository.findByIdAndActivaTrue(id))
+                                .thenReturn(null);
+
+                Assertions.assertThrows(RecursoNoEncontradoException.class, () -> {
+                        cuentaBancariaService.obtenerCuentaPorId(id);
+                });
+        }
+
+        @Test
+        void obtenerCuentasActivasRetornaLista() {
+                List<CuentaBancaria> cuentasMock = List.of(
+                                CuentaBancaria.builder().id("1").activa(true).build(),
+                                CuentaBancaria.builder().id("2").activa(true).build());
+
+                Mockito.when(cuentaBancariaRepository.findByActivaTrue())
+                                .thenReturn(cuentasMock);
+
+                List<CuentaBancaria> resultado = cuentaBancariaService.obtenerCuentasActivas();
+
+                Assertions.assertEquals(2, resultado.size());
+                Assertions.assertTrue(resultado.stream().allMatch(CuentaBancaria::isActiva));
+        }
 
 }

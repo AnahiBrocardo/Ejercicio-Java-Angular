@@ -103,8 +103,6 @@ public class MovimientoCuentaService {
     if (cuenta.getSaldo() < monto) {
       logger.warn("Saldo insuficiente. Saldo actual: {}, monto requerido: {}", cuenta.getSaldo(), monto);
       throw new TransferenciaInvalidaException("El saldo de la cuenta ID " + cuenta.getId() + " es insuficiente.");
-
-
     }
   }
 
